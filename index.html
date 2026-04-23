@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MobileFade<span style="text-transform:uppercase">YYC</span> – Classic Barbershop | Calgary</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>MobileFade YYC – Classic Barbershop | Calgary</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   :root {
     --cream: #f5f0e8;
     --warm-white: #faf7f2;
-    --dark: #1a1410;
+    --dark: #12100e;
     --brown: #3d2b1f;
     --gold: #c9a84c;
     --gold-light: #e8c96e;
     --gold-bright: #f5d47a;
-    --stripe-red: #c0392b;
+    --stripe-red: #b03020;
     --stripe-blue: #1a3a5c;
     --mid: #6b5a4e;
     --border: #d4c4a8;
@@ -23,296 +23,588 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { background: var(--cream); color: var(--dark); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
-  body::before {
+
+  /* GRAIN OVERLAY */
+  body::after {
     content: '';
     position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1000; opacity: 0.5;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.6; mix-blend-mode: multiply;
   }
 
-  /* HIGHLIGHT YYC */
-  .yyc {
+  /* ─── LOGO ─── */
+  .logo-mark {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .logo-mobile {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    text-transform: uppercase;
+  }
+  .logo-fade {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    margin-left: 3px;
+  }
+  .logo-yyc {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.55rem;
+    letter-spacing: 0.18em;
     color: var(--gold-bright);
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    margin-left: 4px;
+    position: relative;
+    top: -1px;
   }
-  .yyc-dark {
-    color: var(--dark);
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .logo-dot {
+    width: 5px; height: 5px;
     background: var(--gold);
-    padding: 0 4px;
-    border-radius: 2px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 2px 4px 2px;
+    flex-shrink: 0;
   }
 
-  /* NAV */
+  /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-    background: var(--dark); border-bottom: 3px solid var(--gold);
+    background: var(--dark);
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(90deg, var(--stripe-red) 0%, var(--gold) 50%, var(--stripe-blue) 100%) 1;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 3rem; height: 70px;
-  }
-  .nav-logo {
-    font-family: 'Cinzel Decorative', serif;
-    font-weight: 900; font-size: 1.25rem; color: var(--gold); text-decoration: none;
-    letter-spacing: 0.04em;
-  }
-  .nav-logo .yyc-nav {
-    color: var(--gold-bright);
-    font-style: normal;
-    text-transform: uppercase;
+    padding: 0 3rem; height: 72px;
   }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream);
+    font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #9a8a7a;
     text-decoration: none; transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--gold); }
-  .nav-cta { background: var(--gold); color: var(--dark) !important; padding: 0.5rem 1.2rem; border-radius: 2px; }
-  .nav-cta:hover { background: var(--gold-light) !important; }
+  .nav-cta {
+    background: var(--gold) !important; color: var(--dark) !important;
+    padding: 0.5rem 1.4rem !important; border-radius: 2px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-bright) !important; }
 
-  /* HERO */
-  .hero { min-height: 100vh; background: var(--dark); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 70px; }
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh; background: var(--dark);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden; padding-top: 72px;
+  }
+  /* Diagonal barber stripe accent */
   .hero::before {
-    content: ''; position: absolute; top: 0; right: 0; width: 260px; height: 100%;
-    background: repeating-linear-gradient(-45deg, var(--stripe-red) 0px, var(--stripe-red) 20px, var(--cream) 20px, var(--cream) 40px, var(--stripe-blue) 40px, var(--stripe-blue) 60px, var(--cream) 60px, var(--cream) 80px);
-    opacity: 0.12; animation: stripeScroll 8s linear infinite;
+    content: '';
+    position: absolute; top: 0; right: 0; width: 42%; height: 100%;
+    background: repeating-linear-gradient(-55deg,
+      var(--stripe-red) 0px, var(--stripe-red) 18px,
+      transparent 18px, transparent 36px,
+      var(--stripe-blue) 36px, var(--stripe-blue) 54px,
+      transparent 54px, transparent 72px);
+    opacity: 0.07; animation: stripeScroll 10s linear infinite;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.9), transparent);
   }
-  @keyframes stripeScroll { from { background-position: 0 0; } to { background-position: 0 160px; } }
-  .hero-inner { max-width: 1200px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; position: relative; z-index: 2; }
-  .hero-badge {
-    font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 800;
-    letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold);
-    border: 1px solid var(--gold); display: inline-block; padding: 0.35rem 1rem;
-    margin-bottom: 1.5rem; animation: fadeUp 0.8s ease both;
+  /* Warm glow */
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -80px; left: -80px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    pointer-events: none;
   }
-  .hero h1 {
-    font-family: 'Cinzel', serif; font-size: clamp(2.6rem, 5.5vw, 5rem);
-    font-weight: 900; color: var(--cream); line-height: 1.08;
-    margin-bottom: 1rem; animation: fadeUp 0.8s 0.15s ease both;
-    letter-spacing: 0.03em;
-  }
-  .hero h1 em { color: var(--gold); font-style: italic; display: block; font-family: 'Cormorant Garamond', serif; font-size: 1.15em; }
-  .hero p {
-    color: #b0a090; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
-    line-height: 1.85; max-width: 440px; margin-bottom: 1.5rem;
-    animation: fadeUp 0.8s 0.3s ease both;
+  @keyframes stripeScroll { from { background-position: 0 0; } to { background-position: 0 144px; } }
+
+  .hero-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 3rem;
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    align-items: center; gap: 4rem; position: relative; z-index: 2;
   }
 
-  /* TAGLINE QUOTE BLOCK */
-  .hero-quote {
-    background: rgba(201,168,76,0.08); border-left: 3px solid var(--gold);
-    padding: 0.9rem 1.2rem; margin-bottom: 2rem;
-    animation: fadeUp 0.8s 0.38s ease both;
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-family: 'Raleway', sans-serif; font-size: 0.66rem; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.9s ease both;
   }
-  .hero-quote .tagline-top {
-    font-family: 'Raleway', sans-serif; font-size: 0.68rem; font-weight: 800;
-    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
-    margin-bottom: 0.35rem;
+  .hero-eyebrow .line { width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    color: var(--cream); line-height: 0.94;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+    animation: fadeUp 0.9s 0.12s ease both;
   }
-  .hero-quote .tagline-loc {
-    font-family: 'Raleway', sans-serif; font-size: 0.65rem; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase; color: #8a7a6a;
+  .hero h1 .italic-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-weight: 700;
+    font-size: 0.72em;
+    color: var(--gold);
+    display: block;
+    letter-spacing: 0.01em;
+  }
+  .hero h1 .yyc-line {
+    color: var(--gold-bright);
+    display: block;
+  }
+
+  .hero-desc {
+    color: #8a7a6a; font-size: 1.12rem; line-height: 1.9;
+    max-width: 460px; margin-bottom: 2.2rem;
+    animation: fadeUp 0.9s 0.24s ease both;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .hero-desc strong { color: var(--gold-bright); font-weight: 600; }
+
+  .hero-tagline {
+    background: rgba(201,168,76,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.4rem; margin-bottom: 2.4rem;
+    animation: fadeUp 0.9s 0.32s ease both;
+  }
+  .hero-tagline blockquote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.02rem;
+    color: #b0a080; line-height: 1.65;
+  }
+  .hero-tagline .tl-sub {
+    font-family: 'Raleway', sans-serif; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.22em; text-transform: uppercase; color: #5a4a3a;
     margin-bottom: 0.5rem;
   }
-  .hero-quote blockquote {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 0.96rem; color: #c8b898; line-height: 1.6;
-  }
 
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.45s ease both; }
+  .hero-btns {
+    display: flex; gap: 1.1rem; flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
   .btn-primary {
     background: var(--gold); color: var(--dark);
-    font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 800;
-    letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.2rem;
-    border: none; cursor: pointer; text-decoration: none; display: inline-block;
-    transition: background 0.2s, transform 0.2s;
+    font-family: 'Raleway', sans-serif; font-size: 0.76rem; font-weight: 800;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    padding: 1.05rem 2.4rem; border: none; cursor: pointer;
+    text-decoration: none; display: inline-block;
+    transition: background 0.22s, transform 0.22s;
+    border-radius: 2px;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.25);
   }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,168,76,0.35); }
   .btn-ghost {
     background: transparent; color: var(--cream);
-    font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase; padding: 1rem 2.2rem;
-    border: 1px solid #6b5a4e; cursor: pointer; text-decoration: none;
-    display: inline-block; transition: border-color 0.2s, color 0.2s;
+    font-family: 'Raleway', sans-serif; font-size: 0.76rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1.05rem 2.2rem; border: 1px solid #3a2e26;
+    cursor: pointer; text-decoration: none; display: inline-block;
+    transition: border-color 0.22s, color 0.22s; border-radius: 2px;
   }
   .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-visual { display: flex; justify-content: center; align-items: center; animation: fadeUp 0.8s 0.3s ease both; }
-  .pole-wrap { position: relative; width: 120px; height: 380px; }
-  .pole-cap { width: 120px; height: 30px; background: linear-gradient(to bottom, #e0e0e0, #aaa); border-radius: 6px 6px 0 0; position: absolute; top: 0; }
-  .pole-base { width: 120px; height: 30px; background: linear-gradient(to bottom, #aaa, #888); border-radius: 0 0 6px 6px; position: absolute; bottom: 0; }
-  .pole-body { position: absolute; top: 30px; left: 0; width: 120px; height: 320px; overflow: hidden; border-radius: 4px; background: #f0f0f0; }
-  .pole-stripes { width: 100%; height: 200%; background: repeating-linear-gradient(-45deg, var(--stripe-red) 0px, var(--stripe-red) 16px, #fff 16px, #fff 32px, var(--stripe-blue) 32px, var(--stripe-blue) 48px, #fff 48px, #fff 64px); animation: poleScroll 3s linear infinite; }
+
+  /* Barber Pole Visual */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeUp 0.9s 0.28s ease both;
+  }
+  .pole-scene {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .pole-glow {
+    position: absolute;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .pole-wrap { position: relative; width: 110px; height: 400px; }
+  .pole-cap {
+    width: 130px; height: 32px; margin-left: -10px;
+    background: linear-gradient(to bottom, #e8e8e8, #bbb);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.4);
+  }
+  .pole-base {
+    width: 130px; height: 32px; margin-left: -10px;
+    background: linear-gradient(to bottom, #bbb, #999);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  .pole-body {
+    width: 110px; height: 336px; overflow: hidden;
+    background: #f5f5f5;
+    box-shadow: inset -6px 0 12px rgba(0,0,0,0.15), inset 6px 0 12px rgba(255,255,255,0.6), 0 0 30px rgba(0,0,0,0.3);
+  }
+  .pole-stripes {
+    width: 100%; height: 200%;
+    background: repeating-linear-gradient(-45deg,
+      var(--stripe-red) 0px, var(--stripe-red) 16px,
+      #fff 16px, #fff 32px,
+      var(--stripe-blue) 32px, var(--stripe-blue) 48px,
+      #fff 48px, #fff 64px);
+    animation: poleScroll 2.8s linear infinite;
+  }
   @keyframes poleScroll { from { transform: translateY(0); } to { transform: translateY(50%); } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
-  .divider { height: 6px; background: repeating-linear-gradient(90deg, var(--stripe-red) 0px, var(--stripe-red) 30px, var(--cream) 30px, var(--cream) 60px, var(--stripe-blue) 60px, var(--stripe-blue) 90px, var(--cream) 90px, var(--cream) 120px); }
+  /* STATS ROW */
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 2.8rem;
+    animation: fadeUp 0.9s 0.5s ease both;
+    padding-top: 2rem; border-top: 1px solid #2a1e16;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem;
+    color: var(--gold); letter-spacing: 0.06em; line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Raleway', sans-serif; font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #4a3a2e; margin-top: 0.15rem;
+  }
 
-  /* SHARED */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 5px;
+    background: linear-gradient(90deg, var(--stripe-red) 0%, var(--stripe-red) 33%, var(--cream) 33%, var(--cream) 34%, #fff 34%, #fff 66%, var(--cream) 66%, var(--cream) 67%, var(--stripe-blue) 67%, var(--stripe-blue) 100%);
+  }
+
+  /* ─── SHARED ─── */
   .section-label {
-    font-family: 'Raleway', sans-serif; font-size: 0.68rem; font-weight: 800;
-    letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
-    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 1rem;
+    font-family: 'Raleway', sans-serif; font-size: 0.66rem; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem;
   }
-  .section-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
   .section-title {
-    font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-    font-weight: 700; line-height: 1.2; margin-bottom: 1rem; letter-spacing: 0.02em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    letter-spacing: 0.04em; line-height: 1.05; margin-bottom: 1rem;
   }
 
-  /* SERVICES */
-  .services-section { background: var(--warm-white); padding: 6rem 3rem; }
-  .services-inner { max-width: 1200px; margin: 0 auto; }
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; margin-top: 3rem; border: 2px solid var(--border); }
-  .service-card { background: var(--cream); padding: 2.5rem 2rem; border-right: 2px solid var(--border); border-bottom: 2px solid var(--border); position: relative; transition: background 0.25s; cursor: default; }
+  /* ─── SERVICES ─── */
+  .services-section { background: var(--warm-white); padding: 7rem 3rem; }
+  .services-inner { max-width: 1280px; margin: 0 auto; }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px; margin-top: 3.5rem;
+    background: var(--border); border: 1px solid var(--border);
+    overflow: hidden; border-radius: 3px;
+  }
+  .service-card {
+    background: var(--cream); padding: 2.8rem 2.2rem;
+    position: relative; transition: background 0.3s; cursor: default;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
   .service-card:hover { background: var(--dark); }
+  .service-card:hover::before { transform: scaleX(1); }
   .service-card:hover .service-name { color: var(--gold); }
-  .service-card:hover .service-desc { color: #9a8a7a; }
-  .service-card:hover .service-icon { border-color: var(--gold); color: var(--gold); }
-  .service-icon { width: 56px; height: 56px; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem; transition: border-color 0.25s, color 0.25s; }
-  .service-name { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 0.6rem; transition: color 0.25s; letter-spacing: 0.03em; }
-  .service-desc { font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.7; color: var(--mid); transition: color 0.25s; }
-  .service-tag { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.2rem 0.6rem; border-radius: 2px; font-weight: 700; }
+  .service-card:hover .service-desc { color: #7a6a5a; }
+  .service-card:hover .service-icon { border-color: rgba(201,168,76,0.4); }
+  .service-icon {
+    width: 52px; height: 52px; border: 1px solid var(--border);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem; margin-bottom: 1.4rem;
+    transition: border-color 0.3s;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem;
+    font-weight: 700; margin-bottom: 0.7rem;
+    transition: color 0.3s; letter-spacing: 0.01em;
+  }
+  .service-desc {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.02rem;
+    line-height: 1.75; color: var(--mid); transition: color 0.3s;
+  }
+  .service-tag {
+    position: absolute; top: 1.4rem; right: 1.4rem;
+    font-family: 'Raleway', sans-serif; font-size: 0.58rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.5);
+    padding: 0.2rem 0.6rem; border-radius: 2px; font-weight: 700;
+  }
 
-  /* PRICING */
-  .pricing-section { background: var(--dark); padding: 6rem 3rem; }
-  .pricing-inner { max-width: 1200px; margin: 0 auto; }
+  /* ─── PRICING ─── */
+  .pricing-section { background: var(--dark); padding: 7rem 3rem; position: relative; overflow: hidden; }
+  .pricing-section::before {
+    content: '';
+    position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  }
+  .pricing-inner { max-width: 1280px; margin: 0 auto; }
   .pricing-section .section-title { color: var(--cream); }
-  .price-table { margin-top: 3rem; border: 1px solid #3a2e26; overflow: hidden; }
-  .price-row { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 2rem; border-bottom: 1px solid #3a2e26; transition: background 0.2s; }
+  .price-table { margin-top: 3.5rem; border: 1px solid #2a1e16; border-radius: 3px; overflow: hidden; }
+  .price-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2.2rem; border-bottom: 1px solid #2a1e16;
+    transition: background 0.2s; position: relative;
+  }
   .price-row:last-child { border-bottom: none; }
-  .price-row:hover { background: #231a12; }
-  .price-row-left { display: flex; align-items: center; gap: 1.2rem; }
-  .price-icon { font-size: 1.3rem; width: 2rem; text-align: center; }
-  .price-name { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--cream); letter-spacing: 0.02em; }
-  .price-note { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #7a6a5a; margin-top: 0.15rem; font-style: italic; }
-  .price-dots { flex: 1; border-bottom: 1px dashed #3a2e26; margin: 0 1.5rem; }
-  .price-amount { font-family: 'Raleway', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--gold); }
+  .price-row:hover { background: #1e1510; }
+  .price-row::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--gold); transform: scaleY(0); transform-origin: top;
+    transition: transform 0.2s;
+  }
+  .price-row:hover::before { transform: scaleY(1); }
+  .price-row-left { display: flex; align-items: center; gap: 1.4rem; }
+  .price-icon { font-size: 1.2rem; width: 2rem; text-align: center; }
+  .price-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); }
+  .price-note { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: #5a4a3a; margin-top: 0.15rem; font-style: italic; }
+  .price-dots { flex: 1; border-bottom: 1px dashed #2a1e16; margin: 0 1.8rem; }
+  .price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--gold); letter-spacing: 0.06em; }
 
-  /* GALLERY */
-  .gallery-section { background: var(--cream); padding: 6rem 3rem; }
-  .gallery-inner { max-width: 1200px; margin: 0 auto; }
-  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 220px); gap: 10px; margin-top: 3rem; }
+  /* ─── GALLERY ─── */
+  .gallery-section { background: var(--cream); padding: 7rem 3rem; }
+  .gallery-inner { max-width: 1280px; margin: 0 auto; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 230px);
+    gap: 8px; margin-top: 3.5rem;
+  }
   .gallery-item { border-radius: 3px; overflow: hidden; position: relative; background: var(--brown); }
   .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .gallery-item:nth-child(4) { grid-column: span 2; }
-  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-  .gallery-item:hover img { transform: scale(1.05); }
-  .gallery-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: #6b5a4e; font-family: 'Raleway', sans-serif; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; filter: saturate(0.9); }
+  .gallery-item:hover img { transform: scale(1.06); filter: saturate(1.1); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(18,16,14,0.7) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-fallback {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.5rem;
+    color: #6b5a4e; font-family: 'Raleway', sans-serif; font-size: 0.68rem;
+    letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700;
+  }
   .gallery-fallback .glyph { font-size: 2rem; opacity: 0.3; }
-  .gallery-label { position: absolute; bottom: 0.8rem; left: 0.8rem; font-family: 'Raleway', sans-serif; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.55); padding: 0.3rem 0.7rem; border-radius: 2px; z-index: 2; font-weight: 600; }
-  .gallery-note { margin-top: 1.5rem; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--mid); }
+  .gallery-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-family: 'Raleway', sans-serif; font-size: 0.62rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.95); background: rgba(0,0,0,0.5);
+    padding: 0.3rem 0.8rem; border-radius: 2px; z-index: 2; font-weight: 700;
+  }
+  .gallery-note {
+    margin-top: 1.8rem; text-align: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.08rem;
+    font-style: italic; color: var(--mid);
+  }
 
-  /* HOW IT WORKS */
-  .mobile-section { background: var(--warm-white); padding: 6rem 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .mobile-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .mobile-steps { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-  .step { display: flex; gap: 1.5rem; align-items: flex-start; }
-  .step-num { font-family: 'Cinzel', serif; font-size: 2.2rem; font-weight: 700; color: var(--border); line-height: 1; min-width: 2.5rem; }
-  .step-text h4 { font-family: 'Cinzel', serif; font-size: 0.95rem; margin-bottom: 0.25rem; letter-spacing: 0.04em; }
-  .step-text p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--mid); line-height: 1.65; }
-  .location-badge { background: var(--dark); color: var(--cream); padding: 2.5rem; border-radius: 4px; text-align: center; position: relative; max-width: 300px; margin: 0 auto; }
-  .location-badge::before { content: ''; position: absolute; inset: 8px; border: 1px solid var(--gold); border-radius: 2px; opacity: 0.4; pointer-events: none; }
-  .location-badge .pin { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
-  .location-badge h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 0.4rem; letter-spacing: 0.04em; }
-  .location-badge p { font-family: 'Raleway', sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a6a5a; line-height: 1.9; font-weight: 500; }
+  /* ─── HOW IT WORKS ─── */
+  .mobile-section { background: var(--warm-white); padding: 7rem 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .mobile-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .mobile-steps { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+  .step { display: flex; gap: 1.8rem; align-items: flex-start; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: rgba(201,168,76,0.2);
+    line-height: 1; min-width: 3rem; letter-spacing: 0.04em;
+  }
+  .step-text h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .step-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--mid); line-height: 1.7; }
 
-  /* BOOKING */
-  .booking-section { background: var(--dark); padding: 6rem 3rem; }
-  .booking-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+  .location-card {
+    background: var(--dark); border-radius: 4px;
+    padding: 3rem 2.5rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .location-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(-55deg,
+      transparent 0px, transparent 30px,
+      rgba(201,168,76,0.025) 30px, rgba(201,168,76,0.025) 31px);
+  }
+  .location-card::after {
+    content: ''; position: absolute; inset: 10px;
+    border: 1px solid rgba(201,168,76,0.2); border-radius: 2px;
+    pointer-events: none;
+  }
+  .location-card .pin { font-size: 2.8rem; margin-bottom: 1rem; display: block; position: relative; z-index: 1; }
+  .location-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+    color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.6rem;
+    position: relative; z-index: 1;
+  }
+  .location-card p {
+    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #5a4a3a;
+    line-height: 2.1; position: relative; z-index: 1;
+  }
+  .location-yyc { color: var(--gold-bright) !important; font-family: 'Bebas Neue', sans-serif !important; font-size: 1rem !important; }
+
+  /* ─── BOOKING CTA ─── */
+  .booking-section {
+    background: var(--dark); padding: 8rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .booking-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(-55deg,
+      transparent 0px, transparent 60px,
+      rgba(201,168,76,0.015) 60px, rgba(201,168,76,0.015) 61px);
+  }
+  .booking-section::after {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .booking-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
   .booking-inner .section-label { justify-content: center; }
   .booking-inner .section-label::before { display: none; }
-  .booking-inner .section-title { color: var(--cream); margin-bottom: 1rem; }
-  .booking-inner > p { font-family: 'Cormorant Garamond', serif; color: #7a6a5a; font-size: 1.08rem; line-height: 1.8; margin-bottom: 2.5rem; }
-  .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left; margin-bottom: 1.5rem; }
-  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-group.full { grid-column: span 2; }
-  .form-group label { font-family: 'Raleway', sans-serif; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: #7a6a5a; font-weight: 700; }
-  .form-group input, .form-group select, .form-group textarea { background: #231a12; border: 1px solid #3a2e26; color: var(--cream); padding: 0.8rem 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; border-radius: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); }
-  .form-group select option { background: #231a12; }
-  .form-group textarea { resize: vertical; min-height: 90px; }
+  .booking-inner .section-title { color: var(--cream); font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.2rem; }
+  .booking-inner .section-title span { color: var(--gold); font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.6em; display: block; letter-spacing: 0.04em; }
+  .booking-desc {
+    font-family: 'Cormorant Garamond', serif; color: #6a5a4a; font-size: 1.12rem;
+    line-height: 1.85; margin-bottom: 3rem;
+  }
+  .booking-desc strong { color: var(--gold); font-weight: 600; }
 
-  /* CALENDAR */
-  .calendar-wrapper { background: #231a12; border: 1px solid #3a2e26; border-radius: 2px; padding: 1rem; user-select: none; }
-  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; }
-  .cal-nav-btn { background: none; border: 1px solid #3a2e26; color: var(--gold); width: 30px; height: 30px; border-radius: 2px; cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-  .cal-nav-btn:hover { background: #3a2e26; }
-  .cal-month-label { font-family: 'Raleway', sans-serif; font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream); font-weight: 700; }
-  .cal-days-header { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 4px; }
-  .cal-day-name { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: #5a4a3a; text-align: center; padding: 0.25rem 0; font-weight: 700; }
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-  .cal-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-family: 'Raleway', sans-serif; font-size: 0.75rem; color: var(--cream); border-radius: 2px; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; border: 1px solid transparent; font-weight: 500; }
-  .cal-cell.cal-empty { cursor: default; color: transparent; }
-  .cal-cell.cal-past { color: #3a2e26 !important; cursor: not-allowed; }
-  .cal-cell.cal-today { border-color: #5a4a3a; color: var(--gold-light); font-weight: 700; }
-  .cal-cell.cal-available:hover { background: #3a2e26; border-color: var(--gold); }
-  .cal-cell.cal-selected { background: var(--gold) !important; color: var(--dark) !important; font-weight: 800; border-color: var(--gold) !important; }
-  .selected-date-display { margin-top: 0.8rem; font-family: 'Raleway', sans-serif; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); text-align: center; min-height: 1.2rem; font-weight: 600; }
+  /* Book CTA Button — XL */
+  .book-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+  .btn-book {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: var(--gold); color: var(--dark);
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1.4rem 4rem; border: none; cursor: pointer;
+    text-decoration: none; border-radius: 3px;
+    box-shadow: 0 6px 40px rgba(201,168,76,0.35);
+    transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+    position: relative; overflow: hidden;
+  }
+  .btn-book::before {
+    content: '';
+    position: absolute; top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+  .btn-book:hover::before { left: 100%; }
+  .btn-book:hover { background: var(--gold-bright); transform: translateY(-4px); box-shadow: 0 12px 50px rgba(201,168,76,0.5); }
+  .btn-book-icon { font-size: 1.2rem; }
+  .book-alt {
+    font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #3a2e26;
+  }
+  .book-alt a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+  .book-alt a:hover { color: var(--gold-bright); }
 
-  /* TIME SLOTS */
-  .time-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-  .time-slot { background: #231a12; border: 1px solid #3a2e26; color: #9a8a7a; font-family: 'Raleway', sans-serif; font-size: 0.7rem; letter-spacing: 0.06em; padding: 0.55rem 0.3rem; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.15s, border-color 0.15s, color 0.15s; font-weight: 600; }
-  .time-slot:hover { background: #3a2e26; border-color: var(--gold); color: var(--cream); }
-  .time-slot.selected { background: var(--gold) !important; color: var(--dark) !important; border-color: var(--gold) !important; font-weight: 800; }
+  /* Booking contact pills */
+  .booking-contacts { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.5rem; }
+  .contact-pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid #2a1e16; color: #6a5a4a;
+    font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.7rem 1.4rem; border-radius: 40px;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-pill:hover { border-color: var(--gold); color: var(--gold); }
+  .contact-pill svg { flex-shrink: 0; }
 
-  .booking-btn { width: 100%; background: var(--gold); color: var(--dark); font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; padding: 1.1rem; border: none; cursor: pointer; transition: background 0.2s; border-radius: 2px; margin-top: 0.5rem; }
-  .booking-btn:hover { background: var(--gold-light); }
-
-  /* REVIEWS / QR */
-  .review-section { background: var(--warm-white); padding: 5rem 3rem; border-top: 1px solid var(--border); }
-  .review-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
-  .review-stars { font-size: 1.6rem; margin-bottom: 0.8rem; letter-spacing: 0.08em; }
-  .review-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--mid); line-height: 1.8; max-width: 480px; margin-bottom: 1.5rem; }
-  .review-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Raleway', sans-serif; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.7rem 1.5rem; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
-  .review-link:hover { background: rgba(201,168,76,0.1); }
-  .qr-card { background: var(--dark); border-radius: 4px; padding: 2rem 1.8rem; text-align: center; position: relative; min-width: 200px; }
-  .qr-card::before { content: ''; position: absolute; inset: 6px; border: 1px solid var(--gold); border-radius: 2px; opacity: 0.3; pointer-events: none; }
-  #qr-code { margin: 0 auto 0.8rem; display: flex; justify-content: center; }
+  /* ─── REVIEWS ─── */
+  .review-section { background: var(--warm-white); padding: 6rem 3rem; border-top: 1px solid var(--border); }
+  .review-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 5rem; align-items: center; }
+  .review-stars { font-size: 1.8rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+  .review-text p { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; color: var(--mid); line-height: 1.85; max-width: 500px; margin-bottom: 1.8rem; }
+  .review-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4); padding: 0.8rem 1.8rem;
+    border-radius: 2px; text-decoration: none; transition: background 0.2s, border-color 0.2s;
+  }
+  .review-link:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+  .qr-card {
+    background: var(--dark); border-radius: 4px; padding: 2.2rem 2rem;
+    text-align: center; position: relative; min-width: 210px;
+  }
+  .qr-card::before { content: ''; position: absolute; inset: 8px; border: 1px solid rgba(201,168,76,0.25); border-radius: 2px; pointer-events: none; }
+  #qr-code { margin: 0 auto 1rem; display: flex; justify-content: center; }
   #qr-code canvas { border-radius: 4px; }
-  .qr-label { font-family: 'Raleway', sans-serif; font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
-  .qr-sublabel { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #4a3a2e; margin-top: 0.3rem; font-weight: 600; }
+  .qr-label { font-family: 'Raleway', sans-serif; font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700; }
+  .qr-sublabel { font-family: 'Raleway', sans-serif; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: #3a2e26; margin-top: 0.3rem; font-weight: 600; }
 
-  /* CONTACT STRIP */
-  .contact-strip { background: var(--gold); padding: 2rem 3rem; display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-  .contact-strip p { font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dark); }
-  .contact-btn { display: inline-flex; align-items: center; gap: 0.6rem; background: var(--dark); color: var(--gold); font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.7rem 1.5rem; text-decoration: none; border-radius: 2px; transition: background 0.2s; }
-  .contact-btn:hover { background: var(--brown); }
-  .wa-icon { width: 20px; height: 20px; fill: #25d366; flex-shrink: 0; }
-  .email-icon { width: 20px; height: 20px; flex-shrink: 0; }
+  /* ─── CONTACT STRIP ─── */
+  .contact-strip {
+    padding: 2.2rem 3rem; display: flex; align-items: center;
+    justify-content: center; gap: 1.8rem; flex-wrap: wrap;
+    background: var(--gold);
+    border-top: 3px solid rgba(0,0,0,0.1);
+  }
+  .contact-strip p { font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dark); }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--dark); color: var(--gold);
+    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.75rem 1.6rem; text-decoration: none; border-radius: 2px;
+    transition: background 0.2s; flex-shrink: 0;
+  }
+  .contact-btn:hover { background: #1e1510; }
+  .wa-icon { width: 18px; height: 18px; fill: #25d366; flex-shrink: 0; }
+  .email-icon { width: 18px; height: 18px; flex-shrink: 0; }
 
-  /* FOOTER */
-  footer { background: var(--dark); border-top: 1px solid #2a1f17; padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Cinzel Decorative', serif; font-weight: 900; font-size: 1rem; color: var(--gold); }
-  .footer-logo .yyc-foot { color: var(--gold-bright); }
-  footer p { font-family: 'Raleway', sans-serif; font-size: 0.66rem; letter-spacing: 0.12em; color: #4a3a2e; text-transform: uppercase; font-weight: 600; }
-  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-  .footer-links a { font-family: 'Raleway', sans-serif; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4a3a2e; text-decoration: none; transition: color 0.2s; font-weight: 600; }
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark); border-top: 1px solid #1e1510;
+    padding: 3rem 3rem; display: flex; align-items: center;
+    justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-logo-mark { display: flex; align-items: baseline; gap: 0; }
+  .footer-logo-mark .logo-mobile { font-size: 1.2rem; }
+  .footer-logo-mark .logo-fade { font-size: 1rem; }
+  .footer-logo-mark .logo-yyc { font-size: 1.2rem; }
+  footer p { font-family: 'Raleway', sans-serif; font-size: 0.64rem; letter-spacing: 0.14em; color: #3a2e26; text-transform: uppercase; font-weight: 600; }
+  .footer-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
+  .footer-links a { font-family: 'Raleway', sans-serif; font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: #3a2e26; text-decoration: none; transition: color 0.2s; font-weight: 600; }
   .footer-links a:hover { color: var(--gold); }
 
-  /* RESPONSIVE */
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
-    .hero-inner { grid-template-columns: 1fr; padding: 2rem 1.5rem; text-align: center; }
-    .hero p { margin: 0 auto 1.5rem; }
+    .hero-inner { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; text-align: center; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-desc { margin: 0 auto 2rem; }
     .hero-btns { justify-content: center; }
-    .hero-visual { margin-top: 2rem; }
-    .services-section, .gallery-section, .pricing-section, .mobile-section, .booking-section, .review-section { padding: 4rem 1.5rem; }
+    .hero-stats { justify-content: center; }
+    .hero-visual { margin-top: 2.5rem; }
+    .services-section, .gallery-section, .pricing-section, .mobile-section, .booking-section, .review-section { padding: 4.5rem 1.5rem; }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .gallery-item { height: 180px; }
-    .gallery-item:nth-child(1) { grid-column: span 2; height: 240px; }
+    .gallery-item { height: 190px; }
+    .gallery-item:nth-child(1) { grid-column: span 2; height: 260px; }
     .gallery-item:nth-child(4) { grid-column: span 1; }
-    .mobile-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .booking-form { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: span 1; }
-    .time-slots { grid-template-columns: repeat(3, 1fr); }
-    .review-inner { grid-template-columns: 1fr; gap: 2rem; }
-    footer { flex-direction: column; text-align: center; align-items: center; padding: 2rem 1.5rem; }
+    .mobile-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .review-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    footer { flex-direction: column; text-align: center; align-items: center; padding: 2.5rem 1.5rem; }
     .contact-strip { padding: 2rem 1.5rem; gap: 1rem; }
+    .btn-book { padding: 1.2rem 2.5rem; font-size: 1.1rem; }
   }
 </style>
 </head>
@@ -320,7 +612,9 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">MobileFade<span class="yyc-nav">YYC</span></a>
+  <a href="#" class="logo-mark">
+    <span class="logo-mobile">Mobile</span><span class="logo-fade">Fade</span><span class="logo-yyc">YYC</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -335,27 +629,51 @@
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">Calgary's Premier Mobile Barber · <span class="yyc" style="color:var(--gold-bright);">YYC</span></div>
-      <h1>The Classic Cut, <em>At Your Door.</em></h1>
-      <p>Premium barbershop experience brought directly to you. Haircuts, hot towel shaves, beard trims — old-school craft, modern convenience. Serving all of <strong style="color:var(--gold);">Calgary <span class="yyc">YYC</span></strong>.</p>
-
-      <!-- TAGLINE / COMMENT BLOCK -->
-      <div class="hero-quote">
-        <div class="tagline-top">✂ Professional Barber &nbsp;·&nbsp; DM for Haircut</div>
-        <div class="tagline-loc">Calgary &nbsp;·&nbsp; <span class="yyc" style="color:var(--gold-bright);">YYC</span> &nbsp;·&nbsp; I+I &nbsp;·&nbsp; I+I</div>
+      <div class="hero-eyebrow">
+        <span class="line"></span>
+        Calgary's Premier Mobile Barber · YYC
+      </div>
+      <h1>
+        The Classic Cut,
+        <span class="italic-line">At Your Door.</span>
+        <span class="yyc-line">Calgary YYC</span>
+      </h1>
+      <p class="hero-desc">
+        Premium barbershop experience brought directly to you.
+        Haircuts, hot towel shaves, beard trims — old-school craft,
+        <strong>modern convenience</strong>. Serving all of Calgary & surrounding areas.
+      </p>
+      <div class="hero-tagline">
+        <div class="tl-sub">✂ Professional Barber · DM for Haircut · Calgary · YYC</div>
         <blockquote>"Where Every Detail Matters, Because Every Gentleman Deserves Perfection"</blockquote>
       </div>
-
       <div class="hero-btns">
         <a href="#book" class="btn-primary">Book an Appointment</a>
         <a href="#services" class="btn-ghost">Our Services</a>
       </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5★</div>
+          <div class="stat-label">Google Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">YYC</div>
+          <div class="stat-label">All Calgary</div>
+        </div>
+      </div>
     </div>
     <div class="hero-visual">
-      <div class="pole-wrap">
-        <div class="pole-cap"></div>
-        <div class="pole-body"><div class="pole-stripes"></div></div>
-        <div class="pole-base"></div>
+      <div class="pole-scene">
+        <div class="pole-glow"></div>
+        <div class="pole-wrap">
+          <div class="pole-cap"></div>
+          <div class="pole-body"><div class="pole-stripes"></div></div>
+          <div class="pole-base"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -394,7 +712,7 @@
         <div class="service-icon">📍</div>
         <div class="service-name">Mobile / At-Home Visits</div>
         <div class="service-tag">Our Specialty</div>
-        <p class="service-desc">No need to leave the house. We come to you — home, office, or event — fully equipped with everything needed for a premium barbershop experience. Serving all of Calgary <span class="yyc-dark">YYC</span> and surrounding areas.</p>
+        <p class="service-desc">No need to leave the house. We come to you — home, office, or event — fully equipped with everything needed for a premium barbershop experience. Serving all of Calgary YYC and surrounding areas.</p>
       </div>
     </div>
   </div>
@@ -404,7 +722,7 @@
 <div class="pricing-section" id="pricing">
   <div class="pricing-inner">
     <div class="section-label" style="color:var(--gold);">Investment</div>
-    <h2 class="section-title">Straightforward Pricing</h2>
+    <h2 class="section-title" style="color:var(--cream);">Straightforward Pricing</h2>
     <div class="price-table">
       <div class="price-row">
         <div class="price-row-left"><div class="price-icon">✂</div><div><div class="price-name">Men's Haircut</div><div class="price-note">Classic cut, taper, scissor finish</div></div></div>
@@ -434,9 +752,13 @@
         <div class="price-row-left"><div class="price-icon">🎖</div><div><div class="price-name">Senior Haircut</div><div class="price-note">65+ — relaxed & respectful service</div></div></div>
         <div class="price-dots"></div><div class="price-amount">$35</div>
       </div>
+      <div class="price-row">
+        <div class="price-row-left"><div class="price-icon">🫧</div><div><div class="price-name">Hot Towel Shave</div><div class="price-note">Full straight-razor ritual</div></div></div>
+        <div class="price-dots"></div><div class="price-amount">$50</div>
+      </div>
     </div>
-    <p style="color:#4a3a2e;font-size:0.85rem;margin-top:1.2rem;font-style:italic;font-family:'Cormorant Garamond',serif;letter-spacing:0.04em;">
-      * Mobile service across Calgary <span class="yyc" style="font-style:normal;font-size:0.75rem;">YYC</span> & surrounding areas. Group discounts available for 3+ clients.
+    <p style="color:#3a2e26;font-size:0.88rem;margin-top:1.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;letter-spacing:0.04em;">
+      * Mobile service across all of Calgary YYC &amp; surrounding areas. Group discounts available for 3+ clients.
     </p>
   </div>
 </div>
@@ -450,32 +772,37 @@
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">✂</div><span>Skin Fade</span></div>
         <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80&fit=crop&crop=face" alt="Skin Fade" loading="lazy">
+        <div class="gallery-overlay"></div>
         <div class="gallery-label">Skin Fade</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">🪒</div><span>Beard Trim</span></div>
         <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80&fit=crop" alt="Beard Trim" loading="lazy">
+        <div class="gallery-overlay"></div>
         <div class="gallery-label">Beard Trim</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">✂</div><span>Classic Cut</span></div>
         <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80&fit=crop" alt="Classic Cut" loading="lazy">
+        <div class="gallery-overlay"></div>
         <div class="gallery-label">Classic Cut</div>
       </div>
       <div class="gallery-item">
-        <div class="gallery-fallback"><div class="glyph">🫧</div><span>Hot Towel Shave</span></div>
+        <div class="gallery-fallback"><div class="glyph">🫧</div><span>Hot Towel</span></div>
         <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=900&q=80&fit=crop" alt="Hot Towel Shave" loading="lazy">
+        <div class="gallery-overlay"></div>
         <div class="gallery-label">Hot Towel Shave</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">⚡</div><span>Buzz Cut</span></div>
         <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=600&q=80&fit=crop" alt="Buzz Cut" loading="lazy">
+        <div class="gallery-overlay"></div>
         <div class="gallery-label">Buzz Cut</div>
       </div>
     </div>
     <p class="gallery-note">
       See more of our work on Instagram →
-      <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank" style="color:var(--gold);text-decoration:none;font-style:normal;">@sahi_amrit</a>
+      <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank" style="color:var(--gold);text-decoration:none;font-style:normal;font-weight:600;">@sahi_amrit</a>
     </p>
   </div>
 </div>
@@ -490,8 +817,8 @@
         <div class="step">
           <div class="step-num">01</div>
           <div class="step-text">
-            <h4>Book Online, WhatsApp or Email</h4>
-            <p>Choose your service, pick a time that works, and tell us your address. Quick and easy.</p>
+            <h4>Book in Seconds</h4>
+            <p>Click "Book an Appointment", pick your service and time on Square — quick and effortless.</p>
           </div>
         </div>
         <div class="step">
@@ -505,129 +832,74 @@
           <div class="step-num">03</div>
           <div class="step-text">
             <h4>Sit Back & Enjoy</h4>
-            <p>Relax in the comfort of your own space while you get a premium barbershop experience.</p>
+            <p>Relax in the comfort of your own space while you get a premium barbershop experience, delivered.</p>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <div class="location-badge">
+      <div class="location-card">
         <span class="pin">📍</span>
         <h3>Based in Calgary</h3>
         <p>69 Cornerglen Way NE</p>
-        <p>Calgary, AB &nbsp;·&nbsp; <span style="color:var(--gold-bright);font-weight:800;">YYC</span></p>
-        <p style="margin-top:0.8rem;color:var(--gold);font-size:0.7rem;">Serving all of <strong>YYC</strong> &amp; area</p>
+        <p>Calgary, AB</p>
+        <p><span class="location-yyc">YYC</span></p>
+        <p style="margin-top:1rem;color:var(--gold);font-size:0.7rem;letter-spacing:0.14em;">Serving all of Calgary &amp; area</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- BOOKING -->
+<!-- BOOKING CTA -->
 <div class="booking-section" id="book">
   <div class="booking-inner">
     <div class="section-label">Ready?</div>
-    <h2 class="section-title">Book Your Appointment</h2>
-    <p>Fill out the form below and we'll confirm your booking within a few hours. Prefer faster? Message us on WhatsApp or email us directly at <strong style="color:var(--gold);">mobilefadeyyc@gmail.com</strong>.</p>
+    <h2 class="section-title">
+      Book Your<br>Appointment
+      <span>It only takes a minute</span>
+    </h2>
+    <p class="booking-desc">
+      Skip the wait. Click below to book your slot directly through our Square booking page — choose your service, pick a time, and we'll come to you.
+      Prefer to chat? Reach us on <strong>WhatsApp</strong> or drop us an email at
+      <strong>mobilefadeyyc@gmail.com</strong>.
+    </p>
 
-    <div class="booking-form">
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" id="f-fname" placeholder="John">
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" id="f-lname" placeholder="Smith">
-      </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" id="f-phone" placeholder="+1 (403) 000-0000">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="f-email" placeholder="john@email.com">
-      </div>
-      <div class="form-group full">
-        <label>Service</label>
-        <select id="f-service">
-          <option value="">Select a service...</option>
-          <option>Men's Haircut — $40</option>
-          <option>Skin Fade — $45</option>
-          <option>Haircut + Beard Trim — $65</option>
-          <option>Beard Trim — $25</option>
-          <option>Buzz Cut — $30</option>
-          <option>Kids Haircut — $35</option>
-          <option>Senior Haircut — $35</option>
-          <option>Hot Towel Shave — $50</option>
-        </select>
-      </div>
-
-      <!-- CALENDAR DATE PICKER -->
-      <div class="form-group full">
-        <label>Select Date</label>
-        <div class="calendar-wrapper">
-          <div class="cal-header">
-            <button class="cal-nav-btn" id="cal-prev">&#8249;</button>
-            <div class="cal-month-label" id="cal-month-label"></div>
-            <button class="cal-nav-btn" id="cal-next">&#8250;</button>
-          </div>
-          <div class="cal-days-header">
-            <div class="cal-day-name">Sun</div>
-            <div class="cal-day-name">Mon</div>
-            <div class="cal-day-name">Tue</div>
-            <div class="cal-day-name">Wed</div>
-            <div class="cal-day-name">Thu</div>
-            <div class="cal-day-name">Fri</div>
-            <div class="cal-day-name">Sat</div>
-          </div>
-          <div class="cal-grid" id="cal-grid"></div>
-          <div class="selected-date-display" id="selected-date-display">📅 Tap a date to select</div>
-        </div>
-      </div>
-
-      <!-- TIME SLOTS -->
-      <div class="form-group full">
-        <label>Preferred Time</label>
-        <div class="time-slots">
-          <div class="time-slot" data-time="9:00 AM">9:00 AM</div>
-          <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
-          <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
-          <div class="time-slot" data-time="12:00 PM">12:00 PM</div>
-          <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
-          <div class="time-slot" data-time="2:00 PM">2:00 PM</div>
-          <div class="time-slot" data-time="3:00 PM">3:00 PM</div>
-          <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
-          <div class="time-slot" data-time="5:00 PM">5:00 PM</div>
-          <div class="time-slot" data-time="6:00 PM">6:00 PM</div>
-          <div class="time-slot" data-time="7:00 PM">7:00 PM</div>
-          <div class="time-slot" data-time="8:00 PM">8:00 PM</div>
-        </div>
-      </div>
-
-      <div class="form-group full">
-        <label>Your Address (for mobile visits)</label>
-        <input type="text" id="f-address" placeholder="69 Cornerglen Way NE, Calgary, AB">
-      </div>
-      <div class="form-group full">
-        <label>Notes (optional)</label>
-        <textarea id="f-notes" placeholder="Any preferences, specific styles, or special requests..."></textarea>
-      </div>
+    <div class="book-cta-wrap">
+      <a href="https://app.squareup.com/appointments/book/7ivur9hi00t736/L7FSZYVD6DZCM/start" target="_blank" class="btn-book">
+        <span class="btn-book-icon">✂</span>
+        Book an Appointment
+      </a>
+      <span class="book-alt">Instant confirmation · Fully online · <a href="https://wa.me/13689991294" target="_blank">Or chat on WhatsApp ↗</a></span>
     </div>
 
-    <button type="button" class="booking-btn" onclick="submitBooking()">
-      Book Appointment Now
-    </button>
+    <div class="booking-contacts">
+      <a href="https://wa.me/13689991294" target="_blank" class="contact-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Us
+      </a>
+      <a href="mailto:mobilefadeyyc@gmail.com" class="contact-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        mobilefadeyyc@gmail.com
+      </a>
+      <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank" class="contact-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @sahi_amrit
+      </a>
+    </div>
   </div>
 </div>
 
-<!-- GOOGLE REVIEW QR -->
+<!-- REVIEWS / QR -->
 <div class="review-section" id="reviews">
   <div class="review-inner">
     <div class="review-text">
       <div class="section-label">Happy Clients</div>
       <div class="review-stars">★★★★★</div>
       <h2 class="section-title">Love Your Cut?<br>Leave Us a Review</h2>
-      <p>Your review means the world to us and helps other <strong>Calgary <span class="yyc-dark">YYC</span></strong> residents find a trusted mobile barber. Scan the QR code or click below — it only takes 30 seconds!</p>
-      <a href="https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4" target="_blank" class="review-link">⭐ Leave a Google Review · MobileFade<span style="text-transform:uppercase;color:var(--gold-bright);">YYC</span></a>
+      <p>Your review means the world to us and helps other <strong>Calgary YYC</strong> residents find a trusted mobile barber. Scan the QR code or click below — it only takes 30 seconds!</p>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4" target="_blank" class="review-link">
+        ⭐ Leave a Google Review · MobileFadeYYC
+      </a>
     </div>
     <div>
       <div class="qr-card">
@@ -648,8 +920,7 @@
   </a>
   <a href="mailto:mobilefadeyyc@gmail.com" class="contact-btn">
     <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
-      <rect x="2" y="4" width="20" height="16" rx="2"/>
-      <polyline points="22,6 12,13 2,6"/>
+      <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/>
     </svg>
     mobilefadeyyc@gmail.com
   </a>
@@ -657,7 +928,9 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">MobileFade<span class="yyc-foot">YYC</span></div>
+  <a href="#" class="footer-logo-mark logo-mark">
+    <span class="logo-mobile">Mobile</span><span class="logo-fade">Fade</span><span class="logo-yyc">YYC</span>
+  </a>
   <p>© 2025 MobileFadeYYC · 69 Cornerglen Way NE, Calgary, AB</p>
   <div class="footer-links">
     <a href="#services">Services</a>
@@ -670,139 +943,12 @@
 </footer>
 
 <script>
-// ── CALENDAR ──
-const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-let calYear, calMonth, selectedDate = null, selectedTime = null;
-
-function initCal() {
-  const now = new Date();
-  calYear = now.getFullYear();
-  calMonth = now.getMonth();
-  renderCal();
-}
-
-function renderCal() {
-  document.getElementById('cal-month-label').textContent = MONTHS[calMonth] + ' ' + calYear;
-  const grid = document.getElementById('cal-grid');
-  grid.innerHTML = '';
-  const today = new Date();
-  today.setHours(0,0,0,0);
-  const firstDay = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
-  for (let i = 0; i < firstDay; i++) {
-    const cell = document.createElement('div');
-    cell.className = 'cal-cell cal-empty';
-    grid.appendChild(cell);
-  }
-  for (let d = 1; d <= daysInMonth; d++) {
-    const cell = document.createElement('div');
-    const cellDate = new Date(calYear, calMonth, d);
-    cellDate.setHours(0,0,0,0);
-    const isPast = cellDate < today;
-    const isToday = cellDate.getTime() === today.getTime();
-    const isSelected = selectedDate && cellDate.getTime() === selectedDate.getTime();
-    let cls = 'cal-cell';
-    if (isPast) cls += ' cal-past';
-    else cls += ' cal-available';
-    if (isToday) cls += ' cal-today';
-    if (isSelected) cls += ' cal-selected';
-    cell.className = cls;
-    cell.textContent = d;
-    if (!isPast) {
-      cell.addEventListener('click', () => {
-        selectedDate = new Date(calYear, calMonth, d);
-        const label = selectedDate.toLocaleDateString('en-CA', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-        document.getElementById('selected-date-display').textContent = '📅 ' + label;
-        renderCal();
-      });
-    }
-    grid.appendChild(cell);
-  }
-}
-
-document.getElementById('cal-prev').addEventListener('click', () => {
-  const now = new Date();
-  if (calMonth === now.getMonth() && calYear === now.getFullYear()) return;
-  calMonth--;
-  if (calMonth < 0) { calMonth = 11; calYear--; }
-  renderCal();
-});
-
-document.getElementById('cal-next').addEventListener('click', () => {
-  calMonth++;
-  if (calMonth > 11) { calMonth = 0; calYear++; }
-  renderCal();
-});
-
-// ── TIME SLOTS ──
-document.querySelectorAll('.time-slot').forEach(slot => {
-  slot.addEventListener('click', () => {
-    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-    slot.classList.add('selected');
-    selectedTime = slot.dataset.time;
-  });
-});
-
-// ── BOOKING SUBMIT ──
-function resetForm() {
-  document.getElementById('f-fname').value = '';
-  document.getElementById('f-lname').value = '';
-  document.getElementById('f-phone').value = '';
-  document.getElementById('f-email').value = '';
-  document.getElementById('f-service').value = '';
-  document.getElementById('f-address').value = '';
-  document.getElementById('f-notes').value = '';
-  selectedDate = null;
-  selectedTime = null;
-  document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-  document.getElementById('selected-date-display').textContent = '📅 Tap a date to select';
-  renderCal();
-}
-
-function submitBooking() {
-  if (!selectedDate) {
-    alert('Please select a date for your appointment.');
-    return;
-  }
-  if (!selectedTime) {
-    alert('Please select a preferred time slot.');
-    return;
-  }
-  const service = document.getElementById('f-service').value;
-  if (!service) {
-    alert('Please select a service.');
-    return;
-  }
-  const dateStr = selectedDate.toLocaleDateString('en-CA', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric'
-  });
-  window.open(
-    'https://app.squareup.com/appointments/book/7ivur9hi00t736/L7FSZYVD6DZCM/start',
-    '_blank'
-  );
-  alert(
-    '✅ Booking request ready!\n\n' +
-    'Service: ' + service + '\n' +
-    'Date: ' + dateStr + '\n' +
-    'Time: ' + selectedTime + '\n\n' +
-    'Redirecting to Square...'
-  );
-  resetForm();
-}
-
-// ── QR CODE ──
 window.addEventListener('load', () => {
-  initCal();
   if (typeof QRCode !== 'undefined') {
     new QRCode(document.getElementById('qr-code'), {
       text: 'https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4',
-      width: 160,
-      height: 160,
-      colorDark: '#1a1410',
-      colorLight: '#faf7f2',
+      width: 160, height: 160,
+      colorDark: '#12100e', colorLight: '#faf7f2',
       correctLevel: QRCode.CorrectLevel.H
     });
   }
