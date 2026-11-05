@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MobileFade YYC – Classic Barbershop | Calgary</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Cormorant+Upright:wght@300;400;500;600;700&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="MobileFade YYC – Calgary's mobile barber. Haircuts, beard trims and hot towel shaves at your door, plus professional tattoos at home with guaranteed work at a good price.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&amp;family=Cormorant+Upright:wght@300;400;500;600;700&amp;family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&amp;family=Raleway:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   :root {
@@ -178,6 +178,13 @@
     padding: 1rem 1.4rem; margin-bottom: 2.4rem;
     animation: fadeUp 0.9s 0.32s ease both;
   }
+  .hero-tagline .jp-badge {
+    display: inline-block;
+    background: var(--gold); color: var(--dark);
+    font-weight: 800; font-size: 0.78rem; letter-spacing: 0.16em;
+    padding: 0.25rem 0.7rem; margin: 0 0.2rem 0.2rem 0; border-radius: 2px;
+    box-shadow: 0 2px 14px rgba(201,168,76,0.35);
+  }
   .hero-tagline blockquote {
     font-family: 'Playfair Display', serif;
     font-style: italic; font-size: 1.02rem;
@@ -188,6 +195,55 @@
     letter-spacing: 0.22em; text-transform: uppercase; color: #a09070;
     margin-bottom: 0.5rem;
   }
+
+  /* NEW: big, high-contrast tattoo callout in hero */
+  .hero-tattoo {
+    display: flex; align-items: center; gap: 1.3rem;
+    background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
+    color: var(--dark); text-decoration: none;
+    padding: 1.3rem 1.6rem; margin-bottom: 2.2rem; border-radius: 4px;
+    max-width: 540px; position: relative; overflow: hidden;
+    box-shadow: 0 8px 40px rgba(201,168,76,0.35);
+    transition: transform 0.22s, box-shadow 0.22s;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+  .hero-tattoo::after {
+    content: ''; position: absolute; inset: 6px;
+    border: 1px solid rgba(18,16,14,0.25); border-radius: 2px; pointer-events: none;
+  }
+  .hero-tattoo:hover { transform: translateY(-3px); box-shadow: 0 14px 50px rgba(201,168,76,0.5); }
+  .hero-tattoo .ht-icon {
+    width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%;
+    background: var(--dark); display: flex; align-items: center; justify-content: center;
+    font-size: 1.9rem;
+  }
+  .hero-tattoo .ht-body { flex: 1; min-width: 0; text-align: left; }
+  .hero-tattoo .ht-kicker {
+    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--stripe-red);
+    margin-bottom: 0.15rem;
+  }
+  .hero-tattoo .ht-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1;
+    letter-spacing: 0.05em; color: var(--dark);
+  }
+  .hero-tattoo .ht-sub {
+    font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.04em; color: #2a1e16; margin-top: 0.35rem; line-height: 1.45;
+  }
+  .hero-tattoo .ht-arrow {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--dark); flex-shrink: 0;
+  }
+
+  /* Mobile / tablet nav buttons (visible only when the link list is hidden) */
+  .nav-mobile { display: none; gap: 0.5rem; align-items: center; }
+  .nav-mobile a {
+    font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+    padding: 0.6rem 1rem; border-radius: 2px; white-space: nowrap;
+  }
+  .nav-mobile .nm-tattoo { border: 1px solid var(--gold); color: var(--gold-bright); }
+  .nav-mobile .nm-book { background: var(--gold); color: var(--dark); }
 
   .hero-btns {
     display: flex; gap: 1.1rem; flex-wrap: wrap;
@@ -415,6 +471,118 @@
     font-style: italic; color: #3d2b1f;
   }
 
+  /* ─── TATTOO (NEW) ─── */
+  .tattoo-section {
+    background: var(--dark); padding: 7rem 3rem;
+    position: relative; overflow: hidden;
+    border-top: 1px solid #1e1510;
+  }
+  .tattoo-section::before {
+    content: '';
+    position: absolute; top: -120px; left: -120px;
+    width: 460px; height: 460px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tattoo-section::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(-55deg,
+      transparent 0px, transparent 60px,
+      rgba(201,168,76,0.015) 60px, rgba(201,168,76,0.015) 61px);
+    pointer-events: none;
+  }
+  .tattoo-inner { max-width: 1280px; margin: 0 auto; position: relative; z-index: 2; }
+  .tattoo-section .section-title { color: var(--cream); }
+  .tattoo-section .section-title span {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    color: var(--gold); font-size: 0.7em; display: block; letter-spacing: 0.02em;
+  }
+  .tattoo-intro {
+    max-width: 720px; color: #e6d8bc; font-size: 1.35rem; line-height: 1.8;
+    font-family: 'Cormorant Garamond', serif; margin-bottom: 1rem;
+  }
+  .tattoo-intro strong { color: var(--gold-bright); font-weight: 600; }
+
+  .tattoo-features {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px; margin-top: 3rem;
+    background: #2a1e16; border: 1px solid #2a1e16; border-radius: 3px; overflow: hidden;
+  }
+  .tattoo-feature { background: #17120f; padding: 2.2rem 2rem; transition: background 0.3s; }
+  .tattoo-feature:hover { background: #1e1510; }
+  .tattoo-feature .tf-icon {
+    width: 48px; height: 48px; border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1.2rem;
+  }
+  .tattoo-feature h4 {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+    color: var(--gold-bright); margin-bottom: 0.5rem;
+  }
+  .tattoo-feature p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.22rem; font-weight: 500;
+    line-height: 1.7; color: #dccdb0;
+  }
+
+  .artist-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    margin-top: 4.5rem; align-items: start;
+  }
+  .artist-card {
+    background: #17120f; border-radius: 4px; padding: 3rem 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .artist-card::after {
+    content: ''; position: absolute; inset: 10px;
+    border: 1px solid rgba(201,168,76,0.2); border-radius: 2px; pointer-events: none;
+  }
+  .artist-card .a-icon { font-size: 2.6rem; display: block; margin-bottom: 1rem; }
+  .artist-card h3 {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem;
+    color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.3rem;
+  }
+  .artist-card .a-role {
+    font-family: 'Raleway', sans-serif; font-size: 0.74rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #b8a888; margin-bottom: 1.4rem;
+  }
+  .artist-card p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.28rem; font-weight: 500;
+    line-height: 1.75; color: #e6d8bc; margin-bottom: 1.4rem;
+  }
+  .artist-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .artist-tags span {
+    font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-bright);
+    border: 1px solid rgba(201,168,76,0.5); padding: 0.45rem 0.95rem; border-radius: 40px;
+  }
+  .tattoo-steps { display: flex; flex-direction: column; gap: 1.8rem; margin-top: 2rem; }
+  .tattoo-steps .step-num { color: rgba(201,168,76,0.4); }
+  .tattoo-steps .step-text h4 { color: var(--cream); font-size: 1.25rem; }
+  .tattoo-steps .step-text p { color: #dccdb0; font-size: 1.2rem; font-weight: 500; }
+
+  .tattoo-promise {
+    margin-top: 4rem; padding: 2.4rem 2.6rem;
+    border: 1px solid rgba(201,168,76,0.4); border-left: 4px solid var(--gold);
+    background: rgba(201,168,76,0.05); border-radius: 2px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.6rem; text-align: center;
+  }
+  .tattoo-promise p { margin: 0 auto; }
+  .tattoo-promise h4 {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700;
+    color: var(--gold-bright); margin-bottom: 0.4rem;
+  }
+  .tattoo-promise p {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500;
+    color: #e6d8bc; line-height: 1.7; max-width: 640px;
+  }
+  .tattoo-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .tattoo-note {
+    margin-top: 1.4rem; text-align: center; font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic; color: #b8a888;
+  }
+
   /* ─── HOW IT WORKS ─── */
   .mobile-section { background: var(--warm-white); padding: 7rem 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .mobile-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
@@ -593,22 +761,53 @@
   @media (max-width: 900px) {
     nav { padding: 0 1.5rem; }
     .nav-links { display: none; }
+    .nav-mobile { display: flex; }
+    .hero-tattoo { margin-left: auto; margin-right: auto; }
     .hero-inner { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; text-align: center; }
     .hero-eyebrow { justify-content: center; }
     .hero-desc { margin: 0 auto 2rem; }
     .hero-btns { justify-content: center; }
     .hero-stats { justify-content: center; }
     .hero-visual { margin-top: 2.5rem; }
-    .services-section, .gallery-section, .pricing-section, .mobile-section, .booking-section, .review-section { padding: 4.5rem 1.5rem; }
+    .services-section, .gallery-section, .pricing-section, .mobile-section, .booking-section, .review-section, .tattoo-section { padding: 4.5rem 1.5rem; }
+    .service-card { grid-column: auto !important; }
     .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
     .gallery-item { height: 190px; }
     .gallery-item:nth-child(1) { grid-column: span 2; height: 260px; }
     .gallery-item:nth-child(4) { grid-column: span 1; }
+    .artist-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .tattoo-promise { padding: 2rem 1.5rem; }
     .mobile-inner { grid-template-columns: 1fr; gap: 3rem; }
     .review-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     footer { flex-direction: column; text-align: center; align-items: center; padding: 2.5rem 1.5rem; }
     .contact-strip { padding: 2rem 1.5rem; gap: 1rem; }
     .btn-book { padding: 1.2rem 2.5rem; font-size: 1.1rem; }
+    .price-dots { display: none; }
+    .tattoo-promise { justify-content: center; text-align: center; }
+    .tattoo-cta { justify-content: center; }
+  }
+  @media (max-width: 520px) {
+    nav { height: 64px; padding: 0 1rem; }
+    .hero { padding-top: 64px; }
+    .l-mob, .l-fade, .l-yyc { font-size: 1.12rem; }
+    .nav-mobile a { padding: 0.55rem 0.8rem; font-size: 0.64rem; letter-spacing: 0.1em; }
+    .hero-inner { padding: 2rem 1.2rem; gap: 2rem; }
+    .hero-tattoo { padding: 1.1rem 1.1rem; gap: 0.9rem; }
+    .hero-tattoo .ht-icon { width: 52px; height: 52px; font-size: 1.5rem; }
+    .hero-tattoo .ht-title { font-size: 2rem; }
+    .hero-tattoo .ht-sub { font-size: 0.74rem; }
+    .hero-tattoo .ht-arrow { font-size: 1.6rem; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-btns a { width: 100%; text-align: center; }
+    .pole-wrap { transform: scale(0.8); }
+    .price-row { padding: 1.2rem 1.1rem; }
+    .price-row-left { gap: 0.8rem; }
+    .price-amount { white-space: nowrap; padding-left: 0.8rem; }
+    .artist-card { padding: 2.2rem 1.5rem; }
+    .tattoo-cta a { width: 100%; text-align: center; }
+    .btn-book { padding: 1.1rem 1.8rem; font-size: 1rem; letter-spacing: 0.14em; }
+    .review-text p { max-width: 100%; }
+    .step { gap: 1.2rem; }
   }
 </style>
 </head>
@@ -623,10 +822,15 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#tattoo">Tattoo</a></li>
     <li><a href="#mobile">Mobile</a></li>
-    <li><a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank">Instagram</a></li>
+    <li><a href="https://www.instagram.com/mobilefadeyyc/" target="_blank">Instagram</a></li>
     <li><a href="https://app.squareup.com/appointments/book/7ivur9hi00t736/L7FSZYVD6DZCM/start" target="_blank" class="nav-cta">Book Now</a></li>
   </ul>
+  <div class="nav-mobile">
+    <a href="#tattoo" class="nm-tattoo">Tattoo</a>
+    <a href="https://app.squareup.com/appointments/book/7ivur9hi00t736/L7FSZYVD6DZCM/start" target="_blank" class="nm-book">Book</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -645,10 +849,19 @@
       <p class="hero-desc">
         Premium barbershop experience brought directly to you.
         Haircuts, hot towel shaves, beard trims — old-school craft,
-        <strong>modern convenience</strong>. Serving all of Calgary & surrounding areas.
+        <strong>modern convenience</strong>. Serving all of Calgary &amp; surrounding areas.
       </p>
+      <a href="#tattoo" class="hero-tattoo">
+        <span class="ht-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#f5d47a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>
+        <span class="ht-body">
+          <div class="ht-kicker">New Service</div>
+          <div class="ht-title">Tattoos At Home</div>
+          <div class="ht-sub">Good price · Guaranteed work · We come to you</div>
+        </span>
+        <span class="ht-arrow">→</span>
+      </a>
       <div class="hero-tagline">
-        <div class="tl-sub">✂ Professional Barber · DM for Haircut · Calgary · YYC</div>
+        <div class="tl-sub">✂ <span class="jp-badge">Journeyperson Barber</span> · DM for Haircut · Calgary · YYC</div>
         <blockquote>"Where Every Detail Matters, Because Every Gentleman Deserves Perfection"</blockquote>
       </div>
       <div class="hero-btns">
@@ -713,6 +926,12 @@
         <p class="service-desc">Patient, friendly, and fun — we make the experience comfortable for kids while keeping parents happy with the results.</p>
       </div>
       <div class="service-card" style="grid-column:span 2;">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+        <div class="service-name">Tattoo at Home</div>
+        <div class="service-tag">New</div>
+        <p class="service-desc">Professional tattoos in the comfort of your own home — good price, guaranteed work. Custom designs, a clean setup, and a relaxed one-on-one session with our tattoo artist. <a href="#tattoo" style="color:var(--gold);text-decoration:none;font-weight:600;">Learn more →</a></p>
+      </div>
+      <div class="service-card" style="grid-column:span 3;">
         <div class="service-icon">📍</div>
         <div class="service-name">Mobile / At-Home Visits</div>
         <div class="service-tag">Our Specialty</div>
@@ -741,7 +960,7 @@
         <div class="price-dots"></div><div class="price-amount">$65</div>
       </div>
       <div class="price-row">
-        <div class="price-row-left"><div class="price-icon">🪒</div><div><div class="price-name">Beard Trim</div><div class="price-note">Shape, define & edge</div></div></div>
+        <div class="price-row-left"><div class="price-icon">🪒</div><div><div class="price-name">Beard Trim</div><div class="price-note">Shape, define &amp; edge</div></div></div>
         <div class="price-dots"></div><div class="price-amount">$25</div>
       </div>
       <div class="price-row">
@@ -749,16 +968,20 @@
         <div class="price-dots"></div><div class="price-amount">$30</div>
       </div>
       <div class="price-row">
-        <div class="price-row-left"><div class="price-icon">⭐</div><div><div class="price-name">Kids Haircut</div><div class="price-note">Patient & fun — 12 & under</div></div></div>
+        <div class="price-row-left"><div class="price-icon">⭐</div><div><div class="price-name">Kids Haircut</div><div class="price-note">Patient &amp; fun — 12 &amp; under</div></div></div>
         <div class="price-dots"></div><div class="price-amount">$35</div>
       </div>
       <div class="price-row">
-        <div class="price-row-left"><div class="price-icon">🎖</div><div><div class="price-name">Senior Haircut</div><div class="price-note">65+ — relaxed & respectful service</div></div></div>
+        <div class="price-row-left"><div class="price-icon">🎖</div><div><div class="price-name">Senior Haircut</div><div class="price-note">65+ — relaxed &amp; respectful service</div></div></div>
         <div class="price-dots"></div><div class="price-amount">$35</div>
       </div>
       <div class="price-row">
         <div class="price-row-left"><div class="price-icon">🫧</div><div><div class="price-name">Hot Towel Shave</div><div class="price-note">Full straight-razor ritual</div></div></div>
         <div class="price-dots"></div><div class="price-amount">$50</div>
+      </div>
+      <div class="price-row">
+        <div class="price-row-left"><div class="price-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div><div><div class="price-name">Tattoo at Home</div><div class="price-note">Good price · guaranteed work — message us for a free quote</div></div></div>
+        <div class="price-dots"></div><div class="price-amount">Free Quote</div>
       </div>
     </div>
     <p style="color:#8a7860;font-size:0.88rem;margin-top:1.4rem;font-style:italic;font-family:'Cormorant Garamond',serif;letter-spacing:0.04em;">
@@ -775,39 +998,146 @@
     <div class="gallery-grid">
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">✂</div><span>Skin Fade</span></div>
-        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80&fit=crop&crop=face" alt="Skin Fade" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&amp;q=80&amp;fit=crop&amp;crop=face" alt="Skin Fade" loading="lazy">
         <div class="gallery-overlay"></div>
         <div class="gallery-label">Skin Fade</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">🪒</div><span>Beard Trim</span></div>
-        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80&fit=crop" alt="Beard Trim" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&amp;q=80&amp;fit=crop" alt="Beard Trim" loading="lazy">
         <div class="gallery-overlay"></div>
         <div class="gallery-label">Beard Trim</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">✂</div><span>Classic Cut</span></div>
-        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80&fit=crop" alt="Classic Cut" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&amp;q=80&amp;fit=crop" alt="Classic Cut" loading="lazy">
         <div class="gallery-overlay"></div>
         <div class="gallery-label">Classic Cut</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">🫧</div><span>Hot Towel</span></div>
-        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=900&q=80&fit=crop" alt="Hot Towel Shave" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=900&amp;q=80&amp;fit=crop" alt="Hot Towel Shave" loading="lazy">
         <div class="gallery-overlay"></div>
         <div class="gallery-label">Hot Towel Shave</div>
       </div>
       <div class="gallery-item">
         <div class="gallery-fallback"><div class="glyph">⚡</div><span>Buzz Cut</span></div>
-        <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=600&q=80&fit=crop" alt="Buzz Cut" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?w=600&amp;q=80&amp;fit=crop" alt="Buzz Cut" loading="lazy">
         <div class="gallery-overlay"></div>
         <div class="gallery-label">Buzz Cut</div>
       </div>
     </div>
     <p class="gallery-note">
       See more of our work on Instagram →
-      <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank" style="color:var(--gold);text-decoration:none;font-style:normal;font-weight:600;">@sahi_amrit</a>
+      <a href="https://www.instagram.com/mobilefadeyyc/" target="_blank" style="color:var(--gold);text-decoration:none;font-style:normal;font-weight:600;">@mobilefadeyyc</a>
     </p>
+  </div>
+</div>
+
+<!-- TATTOO AT HOME (NEW) -->
+<div class="tattoo-section" id="tattoo">
+  <div class="tattoo-inner">
+    <div class="section-label">New Service</div>
+    <h2 class="section-title">Tattoos At Home<span>Good price. Guaranteed work.</span></h2>
+    <p class="tattoo-intro">
+      Now offering <strong>professional tattoo sessions at your home</strong> across Calgary YYC and surrounding areas.
+      Skip the busy studio — get inked in a comfortable, private setting with <strong>fair pricing</strong>
+      and <strong>work we stand behind</strong>.
+    </p>
+
+    <div class="tattoo-features">
+      <div class="tattoo-feature">
+        <div class="tf-icon">🏠</div>
+        <h4>We Come To You</h4>
+        <p>Your living room, your rules. Get tattooed in a relaxed, private space — no waiting rooms, no travel.</p>
+      </div>
+      <div class="tattoo-feature">
+        <div class="tf-icon">💲</div>
+        <h4>Good Price</h4>
+        <p>Honest, fair pricing with no surprises. Message us your idea and get a free quote before you commit.</p>
+      </div>
+      <div class="tattoo-feature">
+        <div class="tf-icon">✅</div>
+        <h4>Guaranteed Work</h4>
+        <p>We take pride in every line. If something isn't right, we'll make it right — ask us about our work guarantee.</p>
+      </div>
+      <div class="tattoo-feature">
+        <div class="tf-icon">🧼</div>
+        <h4>Clean &amp; Safe Setup</h4>
+        <p>Fresh, sterile, single-use needles and a clean, prepared workspace for every session.</p>
+      </div>
+    </div>
+
+    <div class="artist-grid">
+      <div class="artist-card">
+        <span class="a-icon"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>
+        <h3>Your Tattoo Artist</h3>
+        <div class="a-role">Professional · Mobile · Calgary YYC</div>
+        <p>
+          Our tattoo artist is dedicated to clean lines, careful detail and a calm, comfortable experience.
+          Every piece starts with a conversation about your idea, your placement and your style — then
+          we design something that's truly yours.
+        </p>
+        <p>
+          Whether it's your first tattoo or an addition to your collection, you'll get patient guidance,
+          honest advice and a result built to last.
+        </p>
+        <div class="artist-tags">
+          <span>Custom Designs</span>
+          <span>Fine Line</span>
+          <span>Minimal &amp; Small Pieces</span>
+          <span>Lettering &amp; Script</span>
+          <span>Cover-Up Consults</span>
+          <span>First-Timers Welcome</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title" style="color:var(--cream);font-size:clamp(2rem,3vw,2.8rem);">Your Tattoo Session</h2>
+        <div class="tattoo-steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-text">
+              <h4>Share Your Idea</h4>
+              <p>Message us on WhatsApp or Instagram with your design idea, size and placement. We'll send you a free quote.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-text">
+              <h4>Design &amp; Confirm</h4>
+              <p>We finalize the design with you and lock in a time that suits you — you approve everything before we start.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-text">
+              <h4>We Set Up At Your Home</h4>
+              <p>Your artist arrives on time with all equipment, sets up a clean workspace and gets you comfortable.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-text">
+              <h4>Aftercare &amp; Guarantee</h4>
+              <p>You'll get clear aftercare instructions so your tattoo heals beautifully — and our work is guaranteed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tattoo-promise">
+      <div>
+        <h4>Good price · Guaranteed work</h4>
+        <p>Have an idea? Send us a message for a free, no-pressure quote. We'll help you plan the design, size and placement.</p>
+      </div>
+      <div class="tattoo-cta">
+        <a href="https://wa.me/13689991294?text=Hi%20MobileFade%20YYC%2C%20I%27d%20like%20a%20quote%20for%20a%20tattoo%20at%20home." target="_blank" class="btn-primary">Get a Tattoo Quote</a>
+      </div>
+    </div>
+    <p class="tattoo-note">Tattoo sessions are by appointment only. Must be 18+ to be tattooed.</p>
   </div>
 </div>
 
@@ -835,7 +1165,7 @@
         <div class="step">
           <div class="step-num">03</div>
           <div class="step-text">
-            <h4>Sit Back & Enjoy</h4>
+            <h4>Sit Back &amp; Enjoy</h4>
             <p>Relax in the comfort of your own space while you get a premium barbershop experience, delivered.</p>
           </div>
         </div>
@@ -865,7 +1195,7 @@
     <p class="booking-desc">
       Skip the wait. Click below to book your slot directly through our Square booking page — choose your service, pick a time, and we'll come to you.
       Prefer to chat? Reach us on <strong>WhatsApp</strong> or drop us an email at
-      <strong>mobilefadeyyc@gmail.com</strong>.
+      <strong>mobilefadeyyc@gmail.com</strong>. Want a <strong>tattoo at home</strong>? Message us for a free quote.
     </p>
 
     <div class="book-cta-wrap">
@@ -878,16 +1208,16 @@
 
     <div class="booking-contacts">
       <a href="https://wa.me/13689991294" target="_blank" class="contact-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
         WhatsApp Us
       </a>
       <a href="mailto:mobilefadeyyc@gmail.com" class="contact-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22,6 12,13 2,6"></polyline></svg>
         mobilefadeyyc@gmail.com
       </a>
-      <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank" class="contact-pill">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        @sahi_amrit
+      <a href="https://www.instagram.com/mobilefadeyyc/" target="_blank" class="contact-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        @mobilefadeyyc
       </a>
     </div>
   </div>
@@ -907,7 +1237,7 @@
     </div>
     <div>
       <div class="qr-card">
-        <div id="qr-code"></div>
+        <div id="qr-code" title="https://search.google.com/local/writereview?placeid=ChIJN1t_tDeuEmsRUsoyG83frY4"></div>
         <div class="qr-label">Scan to Review</div>
         <div class="qr-sublabel">Google Reviews · MobileFadeYYC</div>
       </div>
@@ -919,12 +1249,12 @@
 <div class="contact-strip">
   <p>Reach us directly</p>
   <a href="https://wa.me/13689991294" class="contact-btn" target="_blank">
-    <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
     WhatsApp
   </a>
   <a href="mailto:mobilefadeyyc@gmail.com" class="contact-btn">
     <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--gold)">
-      <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/>
+      <rect x="2" y="4" width="20" height="16" rx="2"></rect><polyline points="22,6 12,13 2,6"></polyline>
     </svg>
     mobilefadeyyc@gmail.com
   </a>
@@ -940,7 +1270,8 @@
     <a href="#services">Services</a>
     <a href="#pricing">Pricing</a>
     <a href="#gallery">Gallery</a>
-    <a href="https://www.instagram.com/sahi_amrit?igsh=Zm1keGFrdjNqMzMy" target="_blank">Instagram</a>
+    <a href="#tattoo">Tattoo</a>
+    <a href="https://www.instagram.com/mobilefadeyyc/" target="_blank">Instagram</a>
     <a href="mailto:mobilefadeyyc@gmail.com">Email</a>
     <a href="#book">Book</a>
   </div>
@@ -958,5 +1289,6 @@ window.addEventListener('load', () => {
   }
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
